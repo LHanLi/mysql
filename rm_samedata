@@ -1,0 +1,9 @@
+delete from 1min
+where unique_id not in(
+        select first_id from(
+                select
+                        min(unique_id) as first_id
+                from 1min
+                group by tradetime,symbol
+        ) as x
+);
